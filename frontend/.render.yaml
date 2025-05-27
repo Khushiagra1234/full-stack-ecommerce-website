@@ -1,0 +1,3 @@
+build:
+  environment:
+    BUN_INSTALL: "false"
