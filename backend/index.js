@@ -1,6 +1,4 @@
-
-
-const port = 4000;
+const port = process.env.PORT || 4000;  
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -11,7 +9,6 @@ const cors = require("cors");``
 
 const env = require("dotenv");
 env.config();
-
 
 
 app.use(express.json()); //request to response that will automatically pass through the json
@@ -273,14 +270,7 @@ app.post("/addtocart", fetchUser, async (req, res) => {
 	res.send("Added");
 });
 
-app.listen(port,(error)=>{
-    if(!error){
-        console.log("Server Running on port "+port)
-    }
-    else{
-        console.log("Error : "+error)
-    }
-})
+
 
 // Creating endpoints to remove product from cart data
 app.post("/removefromcart", fetchUser, async (req, res) => {
