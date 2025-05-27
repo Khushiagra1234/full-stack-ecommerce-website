@@ -8,10 +8,9 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");``
-const exp = require("constants");
-const { type } = require("os");
-const { deflate } = require("zlib");
-const { error } = require("console");
+const env = require("dotenv");
+env.config();
+
 
 app.use(express.json()); //request to response that will automatically pass through the json
 
@@ -36,28 +35,39 @@ mongoose.connect("mongodb+srv://khushiagra1111:khushi1234@cluster0.5djjqiy.mongo
 app.get("/",(req,res)=>{
     res.send("Express App is Running")
 })
+// Cloudinary configuration
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
-//Image Storage Engine
+cloudinary.config({
+	cloud_name: "dpzn9cvdh",
+	api_key: 513763285362671,
+	api_secret: "v96xucSwR6Wl58CVRLnuUpj_-fU",
+    //CLOUDINARY_URL=cloudinary://513763285362671:v96xucSwR6Wl58CVRLnuUpj_-fU@dpzn9cvdh
+});
 
-const storage = multer.diskStorage({
-    destination: './upload/images',
-    filename: (req,file,cb)=>{
-        return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
-    }
-})
+// console.log(process.env.CLOUD_NAME);
+// console.log(process.env.CLOUD_API_KEY);
+// console.log(process.env.CLOUD_API_SECRET);
 
-const upload = multer({storage:storage})
+const storage = new CloudinaryStorage({
+	cloudinary: cloudinary,
+	params: {
+		folder: "full-stack-ecommerce-website",
+		allowed_formats: ["png", "jpg", "jpeg"],
+	},
+});
 
-//Creating Upload Endpoint for images
+const upload = multer({ storage: storage });
 
-app.use('/images',express.static('upload/images'))
+// Creating Upload Endpoint for images
+app.post("/upload", upload.single("product"), (req, res) => {
+	res.json({
+		success: 1,
+		image_url: req.file.path,
+	});
+});
 
-app.post("/upload",upload.single('product'),(req,res)=>{
-    res.json({
-        success:1,
-        image_url:`http://localhost:${port}/images/${req.file.filename}`
-    })
-})
 
 // Schema for creating products
 
