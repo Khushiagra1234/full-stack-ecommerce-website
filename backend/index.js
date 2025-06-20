@@ -235,7 +235,12 @@ app.get("/newcollections", async (req, res) => {
 	console.log("newCollection Fetched");
 	res.send(newcollection);
 });
-
+app.get("/popularinwomen", async (req, res) => {
+	let products = await Product.find({ category: "women" });
+	let related_products = products.slice(0, 4);
+	console.log("related products fetched");
+	res.send(related_products);
+});
 // Creating endpoint for popular in women section
 app.get("/popularinwomen", async (req, res) => {
 	let products = await Product.find({ category: "women" });
