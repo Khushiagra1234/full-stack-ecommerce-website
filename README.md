@@ -4,6 +4,11 @@
 
 This is a **full-stack e-commerce website** developed using **React JS** for the frontend and **Node.js**, **Express**, and **MongoDB** for the backend. It features a modern, responsive design and a secure user authentication flow with an admin panel for product management.
 
+## 🚀 Live Demo
+
+🔗 [Click here to visit the live demo](https://full-stack-ecommerce-website-9.onrender.com)
+
+
 ---
 
 ## Frontend Development
