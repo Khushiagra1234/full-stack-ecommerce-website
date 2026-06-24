@@ -10,7 +10,7 @@ const RelatedProducts = () => {
   const [relatedProducts,setRelatedProducts] = useState([]);
   
     useEffect(()=>{
-      fetch('https://full-stack-ecommerce-website-5.onrender.com/popularinwomen'
+      fetch('https://full-stack-ecommerce-website-10.onrender.com/popularinwomen'
   )
       .then((response)=>response.json())
       .then((data)=>setRelatedProducts(data));

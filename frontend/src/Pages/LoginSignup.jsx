@@ -19,7 +19,7 @@ const LoginSignup = () => {
     console.log("login Function Executed",formData);
     // getting the data an input field
     let responseData;
-    await fetch('https://full-stack-ecommerce-website-5.onrender.com/login',{
+    await fetch('https://full-stack-ecommerce-website-10.onrender.com/login',{
       method:'POST',
       headers:{
         Accept:'application/form-data',
@@ -42,7 +42,7 @@ const LoginSignup = () => {
     console.log("Signup Function Executed",formData)
     // getting the data an input field
     let responseData;
-    await fetch('https://full-stack-ecommerce-website-5.onrender.com/signup',{
+    await fetch('https://full-stack-ecommerce-website-10.onrender.com/signup',{
       method:'POST',
       headers:{
         Accept:'application/form-data',
